@@ -1,0 +1,15 @@
+# .clinerules
+
+## Konteks project
+Sebelum mengerjakan task apapun, baca dulu:
+- docs/PRD.md — untuk konteks fitur & keputusan produk
+- docs/ERD.md — untuk schema database, JANGAN buat tabel di luar ini tanpa konfirmasi
+- docs/FLOW.md — untuk alur sistem & urutan pemanggilan API
+- docs/TASKS.md — untuk tahu task mana yang sedang dikerjakan
+
+## Aturan kerja
+- Kerjakan HANYA satu task/checkbox dari TASKS.md per sesi, jangan loncat ke task lain
+- Setelah task selesai, centang checkbox terkait di TASKS.md
+- Render video WAJIB async (job queue), jangan render sinkron di API route
+- Gambar/video jangan disimpan di database, hanya URL ke object storage
+- Kalau ada keputusan yang tidak jelas di docs, tanya dulu sebelum asumsi

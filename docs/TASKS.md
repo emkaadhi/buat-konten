@@ -1,0 +1,115 @@
+# TASKS.md — Breakdown Task Bertahap
+
+Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanjut ke task berikutnya. Jangan gabung beberapa task jadi satu prompt besar.
+
+---
+
+## Phase 0 — Setup Project
+
+- [ ] **0.1** Init project Next.js (App Router, TypeScript, Tailwind)
+  ```
+  npx create-next-app@latest video-content-app --typescript --tailwind --app
+  ```
+- [ ] **0.2** Setup Neon Postgres — buat project di neon.tech, ambil connection string, simpan di `.env.local`
+- [ ] **0.3** Install & setup ORM (Drizzle disarankan — ringan & cocok untuk serverless)
+  ```
+  npm install drizzle-orm @neondatabase/serverless
+  npm install -D drizzle-kit
+  ```
+- [ ] **0.4** Buat file `.clinerules` / instruksi project berisi konvensi folder, penamaan, dan referensi ke `ERD.md` + `FLOW.md`
+- [ ] **0.5** Setup storage (Vercel Blob atau Cloudflare R2) untuk upload gambar & video
+- [ ] **0.6** Push repo awal ke GitHub, deploy skeleton kosong ke Vercel (pastikan pipeline CI/CD jalan dari awal)
+
+**Definition of done:** project jalan lokal, konek ke Neon, deploy kosong berhasil di Vercel.
+
+---
+
+## Phase 1 — CRUD Produk
+
+- [ ] **1.1** Buat schema Drizzle sesuai `ERD.md` (tabel `users`, `products`)
+- [ ] **1.2** Migrasi database (`drizzle-kit push`)
+- [ ] **1.3** Buat form input produk: nama, harga, deskripsi, upload max 3 gambar (client-side validasi jumlah & ukuran file)
+- [ ] **1.4** API route untuk simpan produk + upload gambar ke storage, simpan URL ke DB
+- [ ] **1.5** Halaman list produk (riwayat project user)
+- [ ] **1.6** Halaman detail produk
+
+**Definition of done:** user bisa input produk baru, gambar ke-upload, data muncul di list & detail.
+
+---
+
+## Phase 2 — Auth
+
+- [ ] **2.1** Setup NextAuth/Auth.js dengan Google OAuth + email login
+- [ ] **2.2** Proteksi route produk (hanya user login yang bisa akses)
+- [ ] **2.3** Relasikan produk ke `user_id`
+
+**Definition of done:** user harus login untuk akses fitur, data produk ter-scope per user.
+
+---
+
+## Phase 3 — Integrasi AI Copy Generation
+
+- [ ] **3.1** Buat API route `/api/generate-copy` yang terima product data, panggil Gemini/DeepSeek API
+- [ ] **3.2** Desain prompt terstruktur, minta output JSON: `{ hook, caption, cta_text, script: [{scene, text}] }`
+- [ ] **3.3** Simpan hasil generate ke tabel `generated_copy`
+- [ ] **3.4** UI untuk preview hasil AI + tombol edit manual sebelum lanjut
+- [ ] **3.5** Handle error/retry kalau API AI gagal atau response bukan JSON valid
+
+**Definition of done:** dari 1 produk, sistem hasilkan copy AI yang bisa direview & diedit user.
+
+---
+
+## Phase 4 — Template Video (Testing Dulu, Belum Terintegrasi Penuh)
+
+- [ ] **4.1** Ambil 2–3 template Remotion gratis (dari locomotion.pro / repo ali-abassi/remotion-templates)
+- [ ] **4.2** Coba render lokal (`npx remotion render`) untuk pastikan template jalan & cek waktu render
+- [ ] **4.3** Sesuaikan template supaya bisa terima props dinamis: gambar produk, harga, hook text, CTA
+- [ ] **4.4** Buat 3 varian preset template siap pilih user
+
+**Definition of done:** minimal 1 template bisa di-render lokal dengan data dummy produk.
+
+---
+
+## Phase 5 — Pilih Template & Trigger Render
+
+- [ ] **5.1** UI pilih template (preview thumbnail/gif tiap template)
+- [ ] **5.2** Buat tabel `templates` & `renders` sesuai `ERD.md`
+- [ ] **5.3** Setup job queue (Inngest/Trigger.dev) untuk proses render async
+- [ ] **5.4** API route trigger render job → status `queued`
+- [ ] **5.5** Worker/function yang render video (Remotion atau panggil API hosted seperti Creatomate)
+- [ ] **5.6** Update status render (`processing` → `done`/`failed`) + simpan `video_url`
+
+**Definition of done:** submit dari UI menghasilkan job render yang jalan di background, status ter-update di DB.
+
+---
+
+## Phase 6 — Notifikasi, Preview, Download
+
+- [ ] **6.1** Polling atau websocket/SSE sederhana untuk update status render ke UI
+- [ ] **6.2** Halaman preview video hasil render
+- [ ] **6.3** Tombol download mp4
+- [ ] **6.4** Tombol "buat project baru" dari hasil yang sama (reuse produk, ganti template)
+
+**Definition of done:** end-to-end flow dari input produk sampai download video berjalan.
+
+---
+
+## Phase 7 — Polish & Testing
+
+- [ ] **7.1** Error handling menyeluruh (upload gagal, AI gagal, render gagal)
+- [ ] **7.2** Loading states & empty states di semua halaman
+- [ ] **7.3** Rate limiting sederhana (batasi jumlah render per user/hari)
+- [ ] **7.4** Testing end-to-end manual dengan beberapa produk berbeda
+- [ ] **7.5** Review biaya aktual (API AI + render + storage) vs asumsi awal
+
+**Definition of done:** MVP siap dipakai user beta.
+
+---
+
+## Backlog v2 (Setelah MVP Jalan)
+
+- Publish langsung ke TikTok/IG via API resmi
+- Custom brand kit (logo, warna, font)
+- Voice over otomatis (TTS)
+- A/B variant caption/CTA otomatis
+- Analitik performa video
