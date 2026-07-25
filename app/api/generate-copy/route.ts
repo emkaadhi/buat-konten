@@ -151,16 +151,30 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error("Generate copy error:", error);
 
-    // Handle Gemini API errors
-    if (error.message?.includes("API_KEY") || error.message?.includes("not found")) {
+    const message = error?.message || String(error);
+
+    // Handle common Gemini API errors
+    if (message.includes("API_KEY") || message.includes("not found")) {
       return NextResponse.json(
-        { error: "Konfigurasi API AI tidak valid. Hubungi admin." },
+        { error: "Konfigurasi API AI tidak valid. Pastikan GEMINI_API_KEY sudah diset di Vercel." },
+        { status: 500 }
+      );
+    }
+    if (message.includes("SAFETY")) {
+      return NextResponse.json(
+        { error: "Response AI diblokir oleh filter keamanan. Coba lagi dengan input berbeda." },
+        { status: 500 }
+      );
+    }
+    if (message.includes("quota") || message.includes("rate")) {
+      return NextResponse.json(
+        { error: "API AI sedang kelebihan permintaan. Coba lagi beberapa saat." },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { error: "Terjadi kesalahan. Silakan coba lagi." },
+      { error: `Error AI: ${message}` },
       { status: 500 }
     );
   }
