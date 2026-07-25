@@ -121,7 +121,7 @@ export default function ProductDetailPage() {
           <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden mb-3">
             {imageUrls.length > 0 ? (
               <img
-                src={`/api/images?url=${encodeURIComponent(imageUrls[selectedImage])}`}
+                src={imageUrls[selectedImage]}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
@@ -158,7 +158,7 @@ export default function ProductDetailPage() {
                   }`}
                 >
                   <img
-                    src={`/api/images?url=${encodeURIComponent(url)}`}
+                    src={url}
                     alt={`${product.name} ${i + 1}`}
                     className="w-full h-full object-cover"
                   />

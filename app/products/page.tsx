@@ -146,7 +146,7 @@ export default function ProductsPage() {
                 <div className="aspect-video bg-gray-100 relative overflow-hidden">
               {imageUrl ? (
                     <img
-                      src={`/api/images?url=${encodeURIComponent(imageUrl)}`}
+                      src={imageUrl}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                     />
