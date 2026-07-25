@@ -72,12 +72,11 @@ export async function POST(request: NextRequest) {
     const imageUrls: string[] = [];
     for (const image of images) {
       const uniqueName = `products/${crypto.randomUUID()}-${image.name}`;
-      const result = await uploadFromFile(uniqueName, image, {
+      const { url } = await uploadFromFile(uniqueName, image, {
         addRandomSuffix: false,
-        access: "private",
+        access: "public",
       });
-      // Gunakan downloadUrl karena private blob tidak bisa diakses langsung dari browser
-      imageUrls.push(result.downloadUrl);
+      imageUrls.push(url);
     }
 
     // Simpan ke database
