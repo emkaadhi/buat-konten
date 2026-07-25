@@ -96,8 +96,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ product }, { status: 201 });
   } catch (error) {
     console.error("Error creating product:", error);
+    const message =
+      error instanceof Error ? error.message : "Gagal menyimpan produk";
     return NextResponse.json(
-      { error: "Gagal menyimpan produk. Silakan coba lagi." },
+      { error: message },
       { status: 500 }
     );
   }
