@@ -74,6 +74,7 @@ export async function POST(request: NextRequest) {
       const uniqueName = `products/${crypto.randomUUID()}-${image.name}`;
       const { url } = await uploadFromFile(uniqueName, image, {
         addRandomSuffix: false,
+        access: "private",
       });
       imageUrls.push(url);
     }
