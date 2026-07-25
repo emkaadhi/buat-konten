@@ -146,15 +146,8 @@ export default function NewProductPage() {
             id="price"
             name="price"
             type="text"
-            inputMode="numeric"
-            required
-            pattern="[0-9]+"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Contoh: 150000"
-            onInput={(e) => {
-              const target = e.currentTarget;
-              target.value = target.value.replace(/[^0-9]/g, "");
-            }}
           />
           {errors.price && (
             <p className="text-red-500 text-sm mt-1">{errors.price}</p>
