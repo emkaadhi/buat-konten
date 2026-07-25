@@ -45,7 +45,7 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 - [x] **3.1** Buat API route `/api/generate-copy` yang terima product data, panggil Gemini API
 - [x] **3.2** Desain prompt terstruktur, minta output JSON: `{ hook, caption, cta_text, script: [{scene, text}] }`
 - [x] **3.3** Simpan hasil generate ke tabel `generated_copy`
-- [ ] **3.4** UI untuk preview hasil AI + tombol edit manual sebelum lanjut
+- [x] **3.4** UI untuk preview hasil AI + tombol edit manual sebelum lanjut — `app/products/[id]/generate/page.tsx`
 - [x] **3.5** Handle error/retry kalau API AI gagal atau response bukan JSON valid
 
 **Definition of done:** dari 1 produk, sistem hasilkan copy AI yang bisa direview & diedit user.
