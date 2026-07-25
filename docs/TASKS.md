@@ -6,19 +6,12 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 
 ## Phase 0 — Setup Project
 
-- [ ] **0.1** Init project Next.js (App Router, TypeScript, Tailwind)
-  ```
-  npx create-next-app@latest video-content-app --typescript --tailwind --app
-  ```
-- [ ] **0.2** Setup Neon Postgres — buat project di neon.tech, ambil connection string, simpan di `.env.local`
-- [ ] **0.3** Install & setup ORM (Drizzle disarankan — ringan & cocok untuk serverless)
-  ```
-  npm install drizzle-orm @neondatabase/serverless
-  npm install -D drizzle-kit
-  ```
-- [ ] **0.4** Buat file `.clinerules` / instruksi project berisi konvensi folder, penamaan, dan referensi ke `ERD.md` + `FLOW.md`
-- [ ] **0.5** Setup storage (Vercel Blob atau Cloudflare R2) untuk upload gambar & video
-- [ ] **0.6** Push repo awal ke GitHub, deploy skeleton kosong ke Vercel (pastikan pipeline CI/CD jalan dari awal)
+- [x] **0.1** Init project Next.js (App Router, TypeScript, Tailwind)
+- [x] **0.2** Setup Neon Postgres — buat project di neon.tech, ambil connection string, simpan di `.env.local`
+- [x] **0.3** Install & setup ORM (Drizzle)
+- [x] **0.4** Buat file `.clinerules` / instruksi project
+- [x] **0.5** Setup storage (Vercel Blob) untuk upload gambar & video
+- [ ] **0.6** Push repo awal ke GitHub, deploy skeleton kosong ke Vercel
 
 **Definition of done:** project jalan lokal, konek ke Neon, deploy kosong berhasil di Vercel.
 
@@ -49,11 +42,11 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 
 ## Phase 3 — Integrasi AI Copy Generation
 
-- [ ] **3.1** Buat API route `/api/generate-copy` yang terima product data, panggil Gemini/DeepSeek API
-- [ ] **3.2** Desain prompt terstruktur, minta output JSON: `{ hook, caption, cta_text, script: [{scene, text}] }`
-- [ ] **3.3** Simpan hasil generate ke tabel `generated_copy`
+- [x] **3.1** Buat API route `/api/generate-copy` yang terima product data, panggil Gemini API
+- [x] **3.2** Desain prompt terstruktur, minta output JSON: `{ hook, caption, cta_text, script: [{scene, text}] }`
+- [x] **3.3** Simpan hasil generate ke tabel `generated_copy`
 - [ ] **3.4** UI untuk preview hasil AI + tombol edit manual sebelum lanjut
-- [ ] **3.5** Handle error/retry kalau API AI gagal atau response bukan JSON valid
+- [x] **3.5** Handle error/retry kalau API AI gagal atau response bukan JSON valid
 
 **Definition of done:** dari 1 produk, sistem hasilkan copy AI yang bisa direview & diedit user.
 

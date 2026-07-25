@@ -22,6 +22,9 @@
 
 # misc
 .DS_Store
+*.log
+build-output*.txt
+drizzle-output.txt
 *.pem
 
 # debug
