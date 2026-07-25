@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { db } from "@/db";
 import { generatedCopy } from "@/db/schema";
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 interface GenerateCopyRequest {
   productId: string;
@@ -61,6 +58,54 @@ CTA: {ctaText}
 
 Output JSON:`;
 
+const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
+
+async function callDeepSeek(systemPrompt: string, userPrompt: string): Promise<string> {
+  const apiKey = process.env.DEEPSEEK_API_KEY;
+  if (!apiKey) {
+    throw new Error("DEEPSEEK_API_KEY is not configured");
+  }
+
+  const res = await fetch(DEEPSEEK_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "deepseek-chat",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      temperature: 0.8,
+      max_tokens: 1024,
+    }),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`DeepSeek API error (${res.status}): ${errorText}`);
+  }
+
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || "";
+}
+
+function extractAndParseJson(text: string): AiCopyResponse {
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    throw new Error("No JSON found in response");
+  }
+  const parsed = JSON.parse(jsonMatch[0]);
+
+  if (!parsed.hook || !parsed.caption || !parsed.script || !Array.isArray(parsed.script)) {
+    throw new Error("Invalid response structure");
+  }
+
+  return parsed;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: GenerateCopyRequest = await request.json();
@@ -73,54 +118,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Panggil Gemini API
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
     const userPrompt = USER_PROMPT_TEMPLATE
       .replace("{productName}", body.productName)
       .replace("{price}", body.price)
       .replace("{description}", body.description)
       .replace("{ctaText}", body.ctaText);
 
-    const result = await model.generateContent({
-      contents: [
-        { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
-        { role: "model", parts: [{ text: "Siap. Berikan data produknya." }] },
-        { role: "user", parts: [{ text: userPrompt }] },
-      ],
-      generationConfig: {
-        temperature: 0.8,
-        maxOutputTokens: 1024,
-      },
-    });
-
-    const responseText = result.response.text();
+    const responseText = await callDeepSeek(SYSTEM_PROMPT, userPrompt);
 
     // Parse JSON dari response
     let aiResponse: AiCopyResponse;
     try {
-      // Cari JSON dalam response (mungkin ada teks di luar JSON)
-      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
-        throw new Error("No JSON found in response");
-      }
-      aiResponse = JSON.parse(jsonMatch[0]);
+      aiResponse = extractAndParseJson(responseText);
     } catch (parseError) {
       return NextResponse.json(
-        { 
+        {
           error: "Gagal memproses response AI. Silakan coba lagi.",
-          rawResponse: responseText 
-        },
-        { status: 500 }
-      );
-    }
-
-    // Validasi struktur response AI
-    if (!aiResponse.hook || !aiResponse.caption || !aiResponse.script || !Array.isArray(aiResponse.script)) {
-      return NextResponse.json(
-        { 
-          error: "Response AI tidak valid. Silakan coba lagi.",
-          rawResponse: responseText 
+          rawResponse: responseText,
         },
         { status: 500 }
       );
@@ -153,22 +167,15 @@ export async function POST(request: NextRequest) {
 
     const message = error?.message || String(error);
 
-    // Handle common Gemini API errors
-    if (message.includes("API_KEY") || message.includes("not found")) {
+    if (message.includes("API_KEY") || message.includes("api_key")) {
       return NextResponse.json(
-        { error: "Konfigurasi API AI tidak valid. Pastikan GEMINI_API_KEY sudah diset di Vercel." },
+        { error: "Konfigurasi API AI tidak valid. Pastikan DEEPSEEK_API_KEY sudah diset di Vercel." },
         { status: 500 }
       );
     }
-    if (message.includes("SAFETY")) {
+    if (message.includes("rate") || message.includes("quota") || message.includes("insufficient_quota")) {
       return NextResponse.json(
-        { error: "Response AI diblokir oleh filter keamanan. Coba lagi dengan input berbeda." },
-        { status: 500 }
-      );
-    }
-    if (message.includes("quota") || message.includes("rate")) {
-      return NextResponse.json(
-        { error: "API AI sedang kelebihan permintaan. Coba lagi beberapa saat." },
+        { error: "Kuota DeepSeek API habis atau kelebihan permintaan. Coba lagi nanti." },
         { status: 500 }
       );
     }
