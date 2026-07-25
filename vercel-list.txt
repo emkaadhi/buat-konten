@@ -1,0 +1,47 @@
+Vercel CLI 56.5.0 (Node.js 24.8.0)
+Fetching deployments in kurniaadhi79yahoocoms-projects
+> Deployments under kurniaadhi79yahoocoms-projects [337ms]
+
+  Age       Project                                             Deployment                                                                       Status      Environment     Duration     Username              
+  6m        kurniaadhi79yahoocoms-projects/buat-konten          https://buat-konten-5tw99hj9v-kurniaadhi79yahoocoms-projects.vercel.app          ● Ready     Production      40s          kurniaadhi79-4886     
+  5h        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-7fwsjvw5b-kurniaadhi79yahoocoms-projects.vercel.app     ● Ready     Production      28s          kurniaadhi79-4886     
+  1d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-f0580ym9c-kurniaadhi79yahoocoms-projects.vercel.app     ● Ready     Production      22s          kurniaadhi79-4886     
+  1d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-nsat4h7la-kurniaadhi79yahoocoms-projects.vercel.app     ● Ready     Production      53s          kurniaadhi79-4886     
+  1d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-vtdd62aaq-kurniaadhi79yahoocoms-projects.vercel.app     ● Ready     Production      42s          kurniaadhi79-4886     
+  1d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-j9tg9zymu-kurniaadhi79yahoocoms-projects.vercel.app     ● Error     Production      31s          kurniaadhi79-4886     
+  2d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-o5aowj6ep-kurniaadhi79yahoocoms-projects.vercel.app     ● Error     Production      33s          kurniaadhi79-4886     
+  2d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-anvdvqfuk-kurniaadhi79yahoocoms-projects.vercel.app     ● Error     Production      34s          kurniaadhi79-4886     
+  2d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-cden7rb8p-kurniaadhi79yahoocoms-projects.vercel.app     ● Error     Production      43s          kurniaadhi79-4886     
+  2d        kurniaadhi79yahoocoms-projects/klinik-reservasi     https://klinik-reservasi-fz3fcjjn4-kurniaadhi79yahoocoms-projects.vercel.app     ● Error     Production      32s          kurniaadhi79-4886     
+  5d        kurniaadhi79yahoocoms-projects/emporia              https://emporia-3noscdpem-kurniaadhi79yahoocoms-projects.vercel.app              ● Ready     Production      25s          kurniaadhi79-4886     
+  12d       kurniaadhi79yahoocoms-projects/agency-creative      https://agency-creative-6bwoou4f0-kurniaadhi79yahoocoms-projects.vercel.app      ● Ready     Production      26s          kurniaadhi79-4886     
+  12d       kurniaadhi79yahoocoms-projects/landing-pages        https://landing-pages-4bjl9aeyt-kurniaadhi79yahoocoms-projects.vercel.app        ● Ready     Production      29s          kurniaadhi79-4886     
+  12d       kurniaadhi79yahoocoms-projects/chapter-10-rps       https://chapter-10-7evqwowq7-kurniaadhi79yahoocoms-projects.vercel.app           ● Ready     Production      42s          kurniaadhi79-4886     
+  257d      kurniaadhi79yahoocoms-projects/pmapp                https://pmapp-2oo3di6hi-kurniaadhi79yahoocoms-projects.vercel.app                ● Ready     Production      22s          kurniaadhi79-4886     
+  724d      kurniaadhi79yahoocoms-projects/vuematrik            https://vuematrik-2nvrk03cx-kurniaadhi79yahoocoms-projects.vercel.app            ● Ready     Production      12s          kurniaadhi79-4886     
+  724d      kurniaadhi79yahoocoms-projects/vuematrik            https://vuematrik-aqxn3dpjx-kurniaadhi79yahoocoms-projects.vercel.app            ● Ready     Production      11s          kurniaadhi79-4886     
+  1457d     kurniaadhi79yahoocoms-projects/next-shop            https://next-shop-fu1pcuw5h-kurniaadhi79-yahoocom.vercel.app                     ● Ready     Production      57s          kurniaadhi79-4886     
+  1467d     kurniaadhi79yahoocoms-projects/next-games           https://next-games-r1czacxkr-kurniaadhi79-yahoocom.vercel.app                    ● Ready     Production      1m           kurniaadhi79-4886     
+  1467d     kurniaadhi79yahoocoms-projects/games-rps-app        https://games-rps-8zwo26tnv-kurniaadhi79-yahoocom.vercel.app                     ● Ready     Production      51s          kurniaadhi79-4886     
+
+https://buat-konten-5tw99hj9v-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-7fwsjvw5b-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-f0580ym9c-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-nsat4h7la-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-vtdd62aaq-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-j9tg9zymu-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-o5aowj6ep-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-anvdvqfuk-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-cden7rb8p-kurniaadhi79yahoocoms-projects.vercel.app
+https://klinik-reservasi-fz3fcjjn4-kurniaadhi79yahoocoms-projects.vercel.app
+https://emporia-3noscdpem-kurniaadhi79yahoocoms-projects.vercel.app
+https://agency-creative-6bwoou4f0-kurniaadhi79yahoocoms-projects.vercel.app
+https://landing-pages-4bjl9aeyt-kurniaadhi79yahoocoms-projects.vercel.app
+https://chapter-10-7evqwowq7-kurniaadhi79yahoocoms-projects.vercel.app
+https://pmapp-2oo3di6hi-kurniaadhi79yahoocoms-projects.vercel.app
+https://vuematrik-2nvrk03cx-kurniaadhi79yahoocoms-projects.vercel.app
+https://vuematrik-aqxn3dpjx-kurniaadhi79yahoocoms-projects.vercel.app
+https://next-shop-fu1pcuw5h-kurniaadhi79-yahoocom.vercel.app
+https://next-games-r1czacxkr-kurniaadhi79-yahoocom.vercel.app
+https://games-rps-8zwo26tnv-kurniaadhi79-yahoocom.vercel.app
+> To display the next page, run `vercel ls --next 1658289622883`

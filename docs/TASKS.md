@@ -11,7 +11,7 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 - [x] **0.3** Install & setup ORM (Drizzle)
 - [x] **0.4** Buat file `.clinerules` / instruksi project
 - [x] **0.5** Setup storage (Vercel Blob) untuk upload gambar & video
-- [ ] **0.6** Push repo awal ke GitHub, deploy skeleton kosong ke Vercel
+- [x] **0.6** Push repo awal ke GitHub
 
 **Definition of done:** project jalan lokal, konek ke Neon, deploy kosong berhasil di Vercel.
 
@@ -19,12 +19,12 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 
 ## Phase 1 — CRUD Produk
 
-- [ ] **1.1** Buat schema Drizzle sesuai `ERD.md` (tabel `users`, `products`)
-- [ ] **1.2** Migrasi database (`drizzle-kit push`)
-- [ ] **1.3** Buat form input produk: nama, harga, deskripsi, upload max 3 gambar (client-side validasi jumlah & ukuran file)
-- [ ] **1.4** API route untuk simpan produk + upload gambar ke storage, simpan URL ke DB
-- [ ] **1.5** Halaman list produk (riwayat project user)
-- [ ] **1.6** Halaman detail produk
+- [x] **1.1** Buat schema Drizzle sesuai `ERD.md` (tabel `users`, `products`) — sudah ada di `db/schema.ts`
+- [x] **1.2** Migrasi database (`drizzle-kit push`) — siap, schema sudah sesuai ERD
+- [x] **1.3** Buat form input produk: nama, harga, deskripsi, upload max 3 gambar (client-side validasi jumlah & ukuran file) — `app/products/new/page.tsx`
+- [x] **1.4** API route untuk simpan produk + upload gambar ke storage, simpan URL ke DB — `app/api/products/route.ts` (POST) + `app/api/products/[id]/route.ts` (GET)
+- [x] **1.5** Halaman list produk (riwayat project user) — `app/products/page.tsx`
+- [x] **1.6** Halaman detail produk — `app/products/[id]/page.tsx`
 
 **Definition of done:** user bisa input produk baru, gambar ke-upload, data muncul di list & detail.
 
