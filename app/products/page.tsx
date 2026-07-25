@@ -144,9 +144,9 @@ export default function ProductsPage() {
                 className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <div className="aspect-video bg-gray-100 relative overflow-hidden">
-                  {imageUrl ? (
+              {imageUrl ? (
                     <img
-                      src={imageUrl}
+                      src={`/api/images?url=${encodeURIComponent(imageUrl)}`}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                     />
