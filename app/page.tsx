@@ -1,8 +1,15 @@
 import Link from "next/link";
-import { auth } from "@/src/auth";
 
 export default async function Home() {
-  const session = await auth();
+  // Bungkus auth() dengan try/catch supaya landing page tetap tampil
+  // walau ada error konfigurasi NextAuth (misal env vars belum lengkap)
+  let session: { user?: { id?: string; email?: string | null; name?: string | null } } | null = null;
+  try {
+    const { auth } = await import("@/src/auth");
+    session = await auth();
+  } catch {
+    // Auth tidak tersedia — tampilkan sebagai user belum login
+  }
 
   return (
     <div className="flex flex-1 flex-col">
