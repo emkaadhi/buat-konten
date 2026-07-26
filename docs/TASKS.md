@@ -32,7 +32,7 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 
 ## Phase 2 — Auth
 
-- [ ] **2.1** Setup NextAuth/Auth.js dengan Google OAuth + email login
+- [x] **2.1** Setup NextAuth/Auth.js dengan Google OAuth + email login
 - [ ] **2.2** Proteksi route produk (hanya user login yang bisa akses)
 - [ ] **2.3** Relasikan produk ke `user_id`
 
