@@ -12,6 +12,7 @@
     "@auth/drizzle-adapter": "^1.11.3",
     "@google/generative-ai": "^0.24.1",
     "@neondatabase/serverless": "^1.1.0",
+    "@remotion/cli": "^4.0.499",
     "@vercel/blob": "^2.6.1",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
@@ -19,7 +20,8 @@
     "next-auth": "^5.0.0-beta.32",
     "pg": "^8.22.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "remotion": "^4.0.499"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

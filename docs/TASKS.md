@@ -54,10 +54,10 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 
 ## Phase 4 — Template Video (Testing Dulu, Belum Terintegrasi Penuh)
 
-- [ ] **4.1** Ambil 2–3 template Remotion gratis (dari locomotion.pro / repo ali-abassi/remotion-templates)
-- [ ] **4.2** Coba render lokal (`npx remotion render`) untuk pastikan template jalan & cek waktu render
-- [ ] **4.3** Sesuaikan template supaya bisa terima props dinamis: gambar produk, harga, hook text, CTA
-- [ ] **4.4** Buat 3 varian preset template siap pilih user
+- [x] **4.1** Ambil 2–3 template Remotion gratis (dari locomotion.pro / repo ali-abassi/remotion-templates) — digunakan sebagai referensi komponen animasi
+- [x] **4.2** Coba render lokal (`npx remotion render`) — berhasil, 90 frame/3 detik video test di `out/test-modern.mp4`
+- [x] **4.3** Sesuaikan template supaya bisa terima props dinamis: semua template menerima `ProductPromoProps` (productName, price, description, imageUrl, hook, cta, colors)
+- [x] **4.4** Buat 3 varian preset template siap pilih user (`ModernMinimal`, `VibrantBold`, `ElegantWhite`)
 
 **Definition of done:** minimal 1 template bisa di-render lokal dengan data dummy produk.
 
