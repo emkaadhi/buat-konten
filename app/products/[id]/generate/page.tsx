@@ -343,7 +343,7 @@ export default function GenerateCopyPage() {
               Generate Ulang
             </button>
             <Link
-              href={`/products/${id}/generate`}
+              href={`/products/${id}/templates`}
               className="flex-1 bg-blue-600 text-white text-center py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               Lanjut Pilih Template →

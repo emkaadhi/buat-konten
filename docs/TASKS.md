@@ -65,10 +65,10 @@ Cara pakai: jalankan satu task per prompt ke Cline. Review & commit sebelum lanj
 
 ## Phase 5 — Pilih Template & Trigger Render
 
-- [ ] **5.1** UI pilih template (preview thumbnail/gif tiap template)
-- [ ] **5.2** Buat tabel `templates` & `renders` sesuai `ERD.md`
+- [x] **5.1** UI pilih template (preview thumbnail/gif tiap template) — `app/products/[id]/templates/page.tsx`
+- [x] **5.2** Buat tabel `templates` & `renders` sesuai `ERD.md` — sudah ada di `db/schema.ts`, sudah di-push ke Neon
 - [ ] **5.3** Setup job queue (Inngest/Trigger.dev) untuk proses render async
-- [ ] **5.4** API route trigger render job → status `queued`
+- [x] **5.4** API route trigger render job → status `queued` — `app/api/renders/route.ts` (POST)
 - [ ] **5.5** Worker/function yang render video (Remotion atau panggil API hosted seperti Creatomate)
 - [ ] **5.6** Update status render (`processing` → `done`/`failed`) + simpan `video_url`
 
